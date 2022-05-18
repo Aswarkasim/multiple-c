@@ -3,7 +3,7 @@
 
 <div class="card">
 <div class="card-body">
-  <a href="/admin/exam/question/create" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah</a>
+  <a href="/admin/exam/question/create?exampack_id={{request('exampack_id')}}" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah</a>
 
   {{-- <div class="float-right">
     <form action="/admin/exam/question?exampack_id={{$exam_pack_id}}&" method="get">

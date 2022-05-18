@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExamPack;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminQuestionController extends Controller
 {
@@ -43,6 +45,7 @@ class AdminQuestionController extends Controller
         //
         $data = [
             'title'   => 'Create Question',
+            'exampack' => ExamPack::find(request('exampack_id')),
             'content' => 'admin/question/add'
         ];
         return view('admin/layouts/wrapper', $data);
@@ -57,6 +60,14 @@ class AdminQuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            'number'              => 'required',
+            'question'              => 'required',
+            'exam_pack_id'          => 'required'
+        ]);
+        $quest = Question::create($data);
+        Alert::success('Success', 'Question Added added');
+        return redirect('/admin/exam/question/' . $quest->id);
     }
 
     /**
@@ -68,6 +79,12 @@ class AdminQuestionController extends Controller
     public function show($id)
     {
         //
+        $data = [
+            'title'   => 'Complete the Question',
+            // 'question' => Question::find($id),
+            'content' => 'admin/question/detail'
+        ];
+        return view('admin/layouts/wrapper', $data);
     }
 
     /**

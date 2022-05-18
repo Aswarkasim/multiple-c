@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->foreignId('exam_pack_id');
             $table->text('question');
             $table->integer('number');
-            $table->foreignId('choice_id');
+            $table->foreignId('choice_id')->nullable();
             $table->boolean('is_done')->default(false);
             $table->boolean('is_pending')->default(false);
             $table->boolean('is_draft')->default(false);

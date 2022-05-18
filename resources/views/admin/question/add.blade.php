@@ -14,31 +14,36 @@
 
           <div class="row">
             <div class="col-6">
+              <input type="text" name="exam_pack_id" value="{{request('exampack_id')}}" id="">
+              <div class="form-group">
+              <label for="">Number</label>
+              <select name="number" class="form-control @error('number') is-invalid @enderror" >
+                <option value="">-- Number --</option>
+                @for ($i = 1; $i <= $exampack->question_amount; $i++)
+                        
+                    <option value="{{$i}}"
+                      <?php 
+                        if(isset($question)){
+                          if($question->number == $i){
+                            echo 'selected';
+                          }
+                        }
+                        ?>
+                      >{{$i}}</option>
+             @endfor
 
-              <div class="form-group">
-                <label for="">Number</label>
-                <input type="text" class="form-control  @error('name') is-invalid @enderror"  name="name"  value="{{isset($question) ? $question->name : old('name')}}" placeholder="Number">
-                @error('name')
-                    <div class="invalid-feedback">
-                      {{$message}}
-                    </div>
-                @enderror
-              </div>
+            </select>
+            @error('number')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+            @enderror
+          </div>
 
-              <div class="form-group">
-                <label for="">Time</label>
-                <input type="number" class="form-control  @error('times') is-invalid @enderror"  name="times"  value="{{isset($question) ? $question->times : old('times')}}" placeholder="Time : in minute. ex: 90">
-                @error('times')
-                    <div class="invalid-feedback">
-                      {{$message}}
-                    </div>
-                @enderror
-              </div>
-              
-              <div class="form-group">
-                <label for="">Question Amount</label>
-                <input type="number" class="form-control  @error('question_amount') is-invalid @enderror"  name="question_amount"  value="{{isset($question) ? $question->question_amount : old('question_amount')}}" placeholder="Ex. 100">
-                @error('question_amount')
+               <div class="form-group">
+                <label for="">Question</label>
+                <textarea class="form-control  @error('question') is-invalid @enderror" id="summernote"  name="question" placeholder="Question">{{isset($post) ? $post->question : old('question')}}</textarea>
+                @error('question')
                     <div class="invalid-feedback">
                       {{$message}}
                     </div>
@@ -52,7 +57,7 @@
           @php
               $link = '';
               if (Request::is('admin/exam/question/create')){
-                $link = '/admin/exam/question' ;
+                $link = '/admin/exam/question?exampack_id='.request('exampack_id') ;
               }else{
                 $link = '/admin/exam/question/'.$question->id;
               }
