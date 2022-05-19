@@ -11,7 +11,7 @@ class AdminQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *adkaah
      * @return \Illuminate\Http\Response
      */
     public function index()
