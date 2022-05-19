@@ -19,6 +19,7 @@ class AdminQuestionController extends Controller
         //
         $exam_pack_id = request('exampack_id');
         $search = request('search');
+        echo 'a';
 
         if ($search) {
             $question = Question::where('exam_pack_id', $exam_pack_id)->where('name', 'like', '%' . $search . '%')->latest()->paginate(10);
