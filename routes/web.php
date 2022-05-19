@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 
 Route::prefix('/admin/auth')->group(function () {
-    Route::get('/', [AdminAuthController::class, 'index'])->middleware('guest');
+    Route::get('/', [AdminAuthController::class, 'index'])->middleware('guest')->name('login');
     Route::post('/login', [AdminAuthController::class, 'login']);
 
     Route::get('/register', [AdminAuthController::class, 'register']);

@@ -82,7 +82,7 @@ class AdminQuestionController extends Controller
         //
         $data = [
             'title'   => 'Complete the Question',
-            // 'question' => Question::find($id),
+            'question' => Question::find($id),
             'content' => 'admin/question/detail'
         ];
         return view('admin/layouts/wrapper', $data);
