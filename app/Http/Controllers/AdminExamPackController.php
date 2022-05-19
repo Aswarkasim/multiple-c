@@ -59,7 +59,7 @@ class AdminExamPackController extends Controller
         $data = $request->validate([
             'name'              => 'required|min:3',
             'times'              => 'required',
-            'question_amout'    => 'required'
+            'question_amount'    => 'required'
         ]);
         $data['user_id']    = auth()->user()->id;
         ExamPack::create($data);

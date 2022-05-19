@@ -5,7 +5,7 @@
       <div class="card-body">
 
         @if (Request::is('admin/exam/exampacks/create'))
-          <form action="/admin/exam/exampacks" method="POST" enctype="multipart/form-data">  
+          <form action="/admin/exam/exampacks" method="POST">  
         @else
           <form action="/admin/exam/exampacks/{{$exampacks->id}}" method="POST">  
             @method('PUT')
@@ -14,6 +14,10 @@
 
           <div class="row">
             <div class="col-6">
+
+            @if($errors->any())
+    {!! implode('', $errors->all('<div>:message</div>')) !!}
+@endif
 
               <div class="form-group">
                 <label for="">Name</label>

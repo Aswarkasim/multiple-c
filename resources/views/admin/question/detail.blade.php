@@ -12,11 +12,11 @@
            <div class="col-md-6">
              <h4><strong>Question</strong></h4>
              <hr>
-             <p>THis is question</p>
+             <p>{{$question->question}}</p>
 
               <div class="form-group">
                 <label for="">Choice</label>
-                <textarea class="form-control  @error('question') is-invalid @enderror" id="summernote"  name="question" placeholder="Question">{{isset($post) ? $post->question : old('question')}}</textarea>
+                <textarea class="form-control  @error('question') is-invalid @enderror" id="summernote"  name="question" placeholder="Choice">{{isset($post) ? $post->question : old('question')}}</textarea>
                 @error('question')
                     <div class="invalid-feedback">
                       {{$message}}
