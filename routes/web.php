@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminBannerController;
 use App\Http\Controllers\AdminCategoryPostController;
+use App\Http\Controllers\AdminChoiceController;
 use App\Http\Controllers\AdminConfigurationController;
 use App\Http\Controllers\AdminExamPackController;
 use App\Http\Controllers\AdminQuestionController;
@@ -60,6 +61,9 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::prefix('/exam')->group(function () {
         Route::resource('/exampacks', AdminExamPackController::class);
         Route::resource('/question', AdminQuestionController::class);
+        Route::prefix('/choice')->middleware('auth')->group(function () {
+            Route::put('/create', [AdminChoiceController::class, 'create']);
+        });
     });
 });
 

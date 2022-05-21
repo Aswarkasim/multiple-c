@@ -10,4 +10,9 @@ class Question extends Model
     use HasFactory;
 
     protected  $guarded = [];
+
+    function choices()
+    {
+        return $this->hasMany(Choice::class)->orderBy('anotation', 'ASC');
+    }
 }

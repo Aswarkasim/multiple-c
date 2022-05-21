@@ -80,9 +80,13 @@ class AdminQuestionController extends Controller
     public function show($id)
     {
         //
+        $question = Question::with('choices')->find($id);
+        // dd($question);
+        $anotation = ['A', 'B', 'C', 'D', 'E'];
         $data = [
             'title'   => 'Complete the Question',
-            'question' => Question::find($id),
+            'question' => $question,
+            'anotation' => $anotation,
             'content' => 'admin/question/detail'
         ];
         return view('admin/layouts/wrapper', $data);
@@ -109,6 +113,10 @@ class AdminQuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    function updateChoice(Request $request, $id)
+    {
     }
 
     /**

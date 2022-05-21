@@ -30,7 +30,9 @@
     @foreach ($question as $row)
         
     <tr>
-      <td width="50px">{{$loop->iteration}}</td>
+      <td width="50px">
+        <a href="/admin/exam/question/{{$row->id}}" class="btn btn-primary">{{$row->number}}</a>
+      </td>
       <td><a href="/admin/exam/question/{{$row->id}}"><b>{{$row->name}}</a></b> </td>
       <td>{{$row->times.' Minutes'}}</td>
       <td>
